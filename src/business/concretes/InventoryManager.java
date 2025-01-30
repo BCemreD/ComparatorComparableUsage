@@ -4,9 +4,8 @@ import java.util.*;
 
 import entity.Product;
 
-public class InventoryManager<T extends Product> {// a generic class that accepts only Product class and its derived
-													// classes
-
+public class InventoryManager<T extends Product> {// a generic class that accepts only Product class and its derived classes
+												
 	private List<T> items = new ArrayList<>();
 
 	public void addItem(T item) {

@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Product;
 
 public class ProductManager {
-
+ 
     // Sorting by price
     public static Comparator<Product> compareByPrice() {
         return Comparator.comparingDouble(Product::getPrice);

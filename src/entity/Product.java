@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Random;
 
-public class Product {
+public class Product { 
 	
 	//the features
 	private static Random random = new Random(); // Create a single Random instance
