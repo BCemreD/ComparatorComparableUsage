@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 import entity.Product;
@@ -9,12 +10,13 @@ public class Main {
 	public static void main(String[] args) {
 
 		InventoryManager<Product> inventory = new InventoryManager<>();
-		
-		for (Product product : DatabaseExample.getAllProducts()) {
-            inventory.addItem(product);
-        }
-		Scanner scanner = new Scanner(System.in);
 
+		for (Product product : DatabaseExample.getAllProducts()) {
+			inventory.addItem(product);
+		}
+		Scanner scanner = new Scanner(System.in); // to take input from users
+
+		// menu
 		while (true) {
 			System.out.println("1. Add Product");
 			System.out.println("2. Remove Product");
@@ -39,7 +41,7 @@ public class Main {
 				System.out.print("Enter category: ");
 				String category = scanner.nextLine();
 
-				Product product = new Product( name, price, stock, category);
+				Product product = new Product(name, price, stock, category);
 				inventory.addItem(product);
 				System.out.println("Product added: " + name);
 				break;
@@ -47,56 +49,69 @@ public class Main {
 			case 2:
 				System.out.print("Enter product name to remove: ");
 				String removeName = scanner.nextLine();
-				Product toRemove = inventory.findItemByName(removeName);
+				List<Product> toRemoveList = inventory.findItemsByName(removeName);
 
-				if (toRemove != null) {
-					inventory.removeItem(toRemove);
-					System.out.println("Product removed.");
-				}
+				if (!toRemoveList.isEmpty()) {
+					// List matching products
+					System.out.println("Found the following products:");
+					for (int i = 0; i < toRemoveList.size(); i++) {
+						System.out.println((i + 1) + ". " + toRemoveList.get(i)); // Mark w/ numbers
+					}
 
-				else {
+					// Take input from user to remove the exact product
+					System.out.print("Enter the number of the product to remove: ");
+					int option = scanner.nextInt();
+					scanner.nextLine(); // Consume newline
+
+					if (option >= 1 && option <= toRemoveList.size()) {
+						Product toRemove = toRemoveList.get(option - 1); // Selected product
+						inventory.removeItem(toRemove);
+						System.out.println("Product removed: " + toRemove.getName());
+					} else {
+						System.out.println("Invalid selection.");
+					}
+				} else {
 					System.out.println("Product not found.");
 				}
-				
 				break;
 
 			case 3:
 				System.out.print("Enter product name to find: ");
 				String findName = scanner.nextLine();
-				Product found = inventory.findItemByName(findName);
-				
-				if (found != null) {
-					System.out.println(found);
+				List<Product> foundItems = inventory.findItemsByName(findName);
+
+				if (!foundItems.isEmpty()) {
+					System.out.println("Found the following products:");
+					for (Product item : foundItems) {
+						System.out.println(item);
+					}
+				} else {
+					System.out.println("No products found matching the given name.");
 				}
-				
-				else {
-					System.out.println("Product not found.");
-				}
-				
 				break;
 
 			case 4:
 				System.out.println("Products sorted by stock:");
 				inventory.getItemsSortedByStock().forEach(System.out::println);
-				
+
 				break;
 
 			case 5:
 				System.out.println("Products sorted by price:");
 				inventory.getItemsSortedByPrice().forEach(System.out::println);
-				
+
 				break;
 
 			case 6:
 				System.out.println("Inventory:");
 				inventory.printInventory();
-				
+
 				break;
 
 			case 7:
 				System.out.println("Exiting...");
 				scanner.close();
-				
+
 				return;
 
 			default:

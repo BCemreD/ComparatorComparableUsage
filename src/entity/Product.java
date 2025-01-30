@@ -3,7 +3,8 @@ package entity;
 import java.util.Random;
 
 public class Product {
-
+	
+	//the features
 	private static Random random = new Random(); // Create a single Random instance
     private final int id; // Use final for immutability
 	private String name;
@@ -22,7 +23,7 @@ public class Product {
 
 	public int getId() {
 		return id;
-	}
+	}//no set method for id, because it's finalized.
 
 
 	public String getName() {

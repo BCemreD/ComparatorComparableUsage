@@ -4,26 +4,27 @@ import java.util.*;
 
 import entity.Product;
 
-public class InventoryManager<T extends Product> {
+public class InventoryManager<T extends Product> {// a generic class that accepts only Product class and its derived
+													// classes
 
 	private List<T> items = new ArrayList<>();
 
 	public void addItem(T item) {
 		items.add(item);
-	}
+	} // this method provides more control and helps for future scenarios
 
 	public void removeItem(T item) {
 		items.remove(item);
 	}
 
-	public T findItemByName(String name) {
+	public List<T> findItemsByName(String name) {
+		List<T> matchingItems = new ArrayList<>();
 		for (T item : items) {
-			if (item.getName().equalsIgnoreCase(name)) {
-
-				return item;
+			if (item.getName().toLowerCase().contains(name.toLowerCase())) {
+				matchingItems.add(item);
 			}
 		}
-		return null;
+		return matchingItems;
 	}
 
 	public List<T> getItemsSortedByStock() {
@@ -41,7 +42,5 @@ public class InventoryManager<T extends Product> {
 	public void printInventory() {
 		ProductManager.printProducts(items);
 	}
-	
-
 
 }

@@ -6,6 +6,7 @@ import entity.Product;
 
 public class DatabaseExample {
 
+	//creating a list for simulating a database
 	private static List<Product> products = new ArrayList<>();
 
 	static {
