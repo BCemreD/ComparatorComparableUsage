@@ -7,7 +7,7 @@ import dataAccess.DatabaseExample;
 
 public class Main {
 
-	public static void main(String[] args) { 
+	public static void main(String[] args) {
 
 		InventoryManager<Product> inventory = new InventoryManager<>();
 
@@ -103,8 +103,8 @@ public class Main {
 				break;
 
 			case 6:
-				System.out.println("Inventory:");
-				inventory.printInventory();
+				System.out.println("Products sorted by ID:");
+				inventory.getItemsSortedById().reversed().forEach(System.out::println);
 
 				break;
 

@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Random;
 
-public class Product { 
+public class Product implements Comparable<Product>{ 
 	
 	//the features
 	private static Random random = new Random(); // Create a single Random instance
@@ -62,6 +62,16 @@ public class Product {
 	public String toString() {
 		return String.format("ID: %d, Name: %s, Price: %.2f, Stock: %d, Category: %s", id, name, price, stock,
 				category);
+	}
+
+	@Override
+	public int compareTo(Product o) {
+		// default sorting depends on ID numbers
+		if(this.id != o.id) {
+			return Integer.compare(o.id, this.id);
+		}
+		
+		return Double.compare(this.price, o.price); // In case finding the same ID
 	}
 
 }

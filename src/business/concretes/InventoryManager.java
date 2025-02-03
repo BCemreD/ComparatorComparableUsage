@@ -41,5 +41,12 @@ public class InventoryManager<T extends Product> {// a generic class that accept
 	public void printInventory() {
 		ProductManager.printProducts(items);
 	}
+	
+	public List<T> getItemsSortedById() {
+	    Collections.sort(items); // `compareTo` 
+	    return items;
+	}
+
+
 
 }
