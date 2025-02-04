@@ -104,7 +104,7 @@ public class Main {
 
 			case 6:
 				System.out.println("Products sorted by ID:");
-				inventory.getItemsSortedById().reversed().forEach(System.out::println);
+				inventory.getItemsSortedById().forEach(System.out::println);
 
 				break;
 
