@@ -68,7 +68,7 @@ public class Product implements Comparable<Product>{
 	public int compareTo(Product o) {
 		// default sorting depends on ID numbers
 		if(this.id != o.id) {
-			return Integer.compare(o.id, this.id);
+			return Integer.compare(this.id, o.id);
 		}
 		
 		return Double.compare(this.price, o.price); // In case finding the same ID
