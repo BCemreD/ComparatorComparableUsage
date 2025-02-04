@@ -1,1 +1,1 @@
-The stock management simulation project uses a comparable interface and generic structure.
+The stock management simulation project uses a comparable interface, comparator and generic structure.
