@@ -1,1 +1,1 @@
-The stock simulation project that uses comparable interface and generic structure.
+The stock management simulation project uses a comparable interface and generic structure.
